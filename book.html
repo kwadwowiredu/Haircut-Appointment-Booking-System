@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <header class="header">
+      <div class="logo">
+          <img src="./Images/Logo-removebg-preview.png" alt="shoplogo">
+      </div>
+      <div class="menu-btn">
+        <span class="material-icons-sharp">menu</span>
+      </div>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="book.html">Book Appointment</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="booking-header">
+      <h2>Book Your Appointment With Us</h2>
+    </div>
+
+    <div class="booking-container">
+      <aside>
+        <div class="container-logo">
+            <img src="./Images/Logo-removebg-preview.png" alt="shoplogo">
+        </div>
+        <div class="step">
+          <a href="#">
+              <span id="active-1" class="active"></span>
+              <h3>Service</h3>
+          </a>
+          <a href="#">
+              <span id="active-2" class="active hidden"></span>
+              <h3>Barbers</h3>
+          </a>
+          <a href="#">
+              <span id="active-3" class="active hidden"></span>
+              <h3>Date & Time</h3>
+          </a>
+          <a href="#">
+              <span id="active-4" class="active hidden"></span>
+              <h3>Information</h3>
+          </a>
+          <a href="#">
+              <span id="active-5" class="active hidden"></span>
+              <h3>Confirmation</h3>
+          </a>
+        </div>
+      </aside>
+      <div class="display-area">
+        <!-----SELECT SERVICE------->
+        <div id="content-1">
+          <div id="select-service" class="step-content">
+            <h3>Select Service</h3>
+            <div class="service-cards">
+              <div class="service-card" data-service="kids-haircut">
+                  <p>Kids Haircut (Under 12)</p>
+                  <span class="pricing">GHc 15.00</span>
+              </div>
+              <div class="service-card" data-service="adult-haircut">
+                  <p>Adult Haircut (Without Facial Hair)</p>
+                  <span class="pricing">GHc 25.00</span>
+              </div>
+              <div class="service-card" data-service="haircut-facial">
+                  <p>Haircut (With Facial Hair)</p>
+                  <span class="pricing">GHc 30.00</span>
+              </div>
+              <div class="service-card" data-service="design-pattern">
+                  <p>Haircut & Design/Pattern</p>
+                  <span class="pricing">GHc 50.00</span>
+              </div>
+              <div class="service-card" data-service="shape-up">
+                  <p>Shape Up</p>
+                  <span class="pricing">GHc 15.00</span>
+              </div>
+              <div class="service-card" data-service="dye-shape">
+                  <p>Hair Dye & Shape Up</p>
+                  <span class="pricing">GHc 25.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <div id="content-2">
+          <!-----SELECT BARBER------->
+          <div id="select-barber" class="step-content hidden">
+              <h3>Select Barber</h3>
+              <div class="barber-cards">
+                  <!-- Barber cards will be dynamically populated based on selected service -->
+              </div>
+              <button class="back-button" onclick="goToPreviousStep('select-service', 'select-barber'); goToPreviousActive('active-1','active-2')">Back</button>
+          </div>
+        </div>
+          
+        <div id="content-3">
+            <!---------SELECT DATE & TIME--------->
+          <div id="select-date" class="step-content hidden">
+            <h3>Select Date & Time</h3>
+            <div class="date-time-options">
+              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
+                <p>17th Dec, 10:00 AM</p>
+              </div>
+              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
+                <p>17th Dec, 2:00 PM</p>
+              </div>
+              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
+                <p>18th Dec, 9:00 AM</p>
+              </div>
+              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
+                <p>18th Dec, 12:00 PM</p>
+              </div>
+              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
+                <p>18th Dec, 4:00 PM</p>
+              </div>
+              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
+                <p>19th Dec, 3:00 PM</p>
+              </div>
+            </div>
+            <button class="back-button" onclick="goToPreviousStep('select-service', 'select-date'); goToPreviousActive('active-2','active-3')">Back</button>
+          </div>
+        </div>
+        
+        <div id="content-4">
+        <!-----------INPUT INFORMATION------------>
+            <div id="input-information" class="step-content hidden">
+                <h3>Enter Your Information</h3>
+                <form>
+                  <label for="user-name">Name:</label>
+                  <input type="text" id="user-name" class="input-field" placeholder="Your Name..." required />
+                  <label for="user-email">Email:</label>
+                  <input type="email" id="user-email" class="input-field" placeholder="Your Email..." required />
+                  <label for="user-phone">Phone:</label>
+                  <input type="tel" id="user-phone" class="input-field" placeholder="Your Phone Number..." required />
+                
+                </form>
+                <div id="back-next">
+                    <button class="back-button" onclick="goToPreviousStep('select-date', 'input-information'); goToPreviousActive('active-3','active-4')">Back</button>
+                    <button id="information-next">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-5">
+         <!--------------CONFIRMATION SECTION------------>
+          <div id="confirmation" class="step-content hidden">
+            <h3>Confirm Your Booking</h3>
+            <div id="confirmation-details"></div>
+            <div id="back-next">
+                <button class="back-button" onclick="goToPreviousStep('input-information', 'confirmation'); goToPreviousActive('active-4','active-5')">Back</button>
+                <button id="confirm-booking">Confirm Booking</button>
+            </div>
+          </div>   
+        </div>
+      </div>
+    </div>  
+
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-section-1">
+            <img src="./Images/Logo-removebg-preview.png" alt="Trimz House Logo" class="footer-logo">
+            <p class="business-hours-title">Business Hours</p>
+            <p>Monday - Saturday: 10am to 8pm</p>
+            <p>Sunday: 11am to 7pm</p>
+          </div>
+      
+          <div class="footer-section-2">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Book Your Appointment</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+              <img src="../30 DAYS PROJECT/LOGIN PAGE/insta.jpg">
+              <img src="../30 DAYS PROJECT/LOGIN PAGE/whatsapp.jpg">
+              <img src="../30 DAYS PROJECT/LOGIN PAGE/tiktok.png">
+          </div>
+          </div>
+      
+          <div class="footer-section-3">
+            <h4>Say Hi!</h4>
+            <p>Email Us</p>
+            <p>britainhaircut@gmail.com</p>
+            <h4>Call Us</h4>
+            <p>Phone: 0248666907</p>
+            <h4>Find Us</h4>
+            <p>Konongo-Market</p>
+          </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright &copy;2024 Britain Haircut</p>
+    </footer>
+
+   <script src="app.js"></script>
+   <script src="menu.js"></script>
+</body>
+</html>
+
