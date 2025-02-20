@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -105,26 +106,16 @@
           <div id="select-date" class="step-content hidden">
             <h3>Select Date & Time</h3>
             <div class="date-time-options">
-              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
-                <p>17th Dec, 10:00 AM</p>
-              </div>
-              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
-                <p>17th Dec, 2:00 PM</p>
-              </div>
-              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
-                <p>18th Dec, 9:00 AM</p>
-              </div>
-              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
-                <p>18th Dec, 12:00 PM</p>
-              </div>
-              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
-                <p>18th Dec, 4:00 PM</p>
-              </div>
-              <div class="date-time-option" data-datetime="2024-12-12 10:00 AM">
-                <p>19th Dec, 3:00 PM</p>
-              </div>
+                <input type="text" id="date-picker" placeholder="Select Date" readonly>
+                <select id="time-slot" disabled>
+                    <option value="">Select Time</option>
+                    <!-- Time slots will be dynamically populated -->
+                </select>
             </div>
-            <button class="back-button" onclick="goToPreviousStep('select-service', 'select-date'); goToPreviousActive('active-2','active-3')">Back</button>
+            <div id="back-next">
+                <button class="back-button" onclick="goToPreviousStep('select-service', 'select-date'); goToPreviousActive('active-2','active-3')">Back</button>
+                <button id="date-next" disabled>Next</button>
+            </div>
           </div>
         </div>
         
@@ -174,9 +165,9 @@
           <div class="footer-section-2">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Book Your Appointment</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="home.html">Home</a></li>
+              <li><a href="book.html">Book Your Appointment</a></li>
+              <li><a href="about.html">About Us</a></li>
             </ul>
             <h4>Follow Us</h4>
             <div class="social-icons">
@@ -200,8 +191,10 @@
         <p class="copyright">Copyright &copy;2024 Britain Haircut</p>
     </footer>
 
+   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>  
    <script src="app.js"></script>
    <script src="menu.js"></script>
+   
 </body>
 </html>
 

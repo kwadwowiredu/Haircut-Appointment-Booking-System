@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+:root{
+  --color-primary: #001F3F;
+  --color-primary-variant: #007bff;
+  --color-background: #f6f6f9;
+  --color-white: white;
+  --color-dark: black;
+  --color-success: #4CAF50;
+  
+}
 * {
     margin: 0 2px;
     padding: 0;
@@ -7,15 +16,15 @@
 }
 
 body{
-    background-color: #f6f6f9;
+    background-color: var(--color-background);
 }
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
-    background-color: #001F3F;
-    color: black;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
     position: fixed;
     width: 100%;
     top: 0;
@@ -31,7 +40,7 @@ body{
 
 .menu-btn .material-icons-sharp{
   font-size: 24px;
-  color: white;
+  color: var(--color-white);
   font-family: 'Material Icons Sharp' !important;
     font-style: normal;
     font-weight: normal;
@@ -81,7 +90,7 @@ body{
   height: 2px;
   bottom: -5px;
   left: 0;
-  background-color: #007bff;
+  background-color: var(--color-primary-variant);
   transition: all 300ms ease;
 }
 
@@ -116,7 +125,7 @@ body{
     transform: translate(-50%, -50%);
     z-index: 1;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: var(--color-white);
     background-color:  rgba(0, 0, 0, 0.5);
     padding: 20px 20px;
     border-radius: 10px;
@@ -129,8 +138,8 @@ body{
 }
 
 button.main-btn{
-    background-color: #007bff;
-    color: white;
+    background-color: var(--color-primary-variant);
+    color: var(--color-white);
     border: none;
     margin: 5px;
     padding: 10px 20px;
@@ -140,7 +149,7 @@ button.main-btn{
 }
 button.main-btn a{
     text-decoration: none;
-    color: white;
+    color: var(--color-white);
 }
 
 button.main-btn:hover {
@@ -158,7 +167,7 @@ button.main-btn:hover {
 .gallery-section {
     text-align: center;
     padding: 50px 20px;
-    background-color: white;
+    background-color: var(--color-white);
     margin: 20px auto;
     border-radius: 15px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.2);;
@@ -197,8 +206,8 @@ button.main-btn:hover {
   }
   
   .gallery-btn {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--color-primary-variant);
+    color: var(--color-white);
     border: none;
     margin-top: 10px;
     padding: 10px 20px;
@@ -215,13 +224,12 @@ button.main-btn:hover {
   h4 .features{
     text-align: center;
     margin-top: 80px;
-    text-decoration-line: underline;
   }
   .features-section {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background-color: white;
+    background-color: var(--color-white);
   }
   
   .feature-card {
@@ -257,7 +265,7 @@ button.main-btn:hover {
   }
 
   .footer {
-    background-color: #001F3F;
+    background-color: var(--color-primary);
     color: #fff;
     padding: 10px 20px;
     text-align: center;
@@ -303,7 +311,7 @@ button.main-btn:hover {
   }
 
   .footer-section-2 ul li a:hover {
-    color: #007bff;
+    color: var(--color-primary-variant);
   }
 
   
@@ -400,7 +408,7 @@ aside .step a span:not(.hidden){
 }
 
 .step .active {
-    background: #2cc793;
+    background: var(--color-success);
 }
 
 /*-----------CONTENT AREA----------*/
@@ -436,8 +444,8 @@ aside .step a span:not(.hidden){
 
 .barber-card {
     text-align: center;
-    padding: 60px 40px;
-    background-color: #fff;
+    padding: 15px 10px;
+    background-color: #f6f6f9;
     border: 1px solid #ddd;
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -445,17 +453,16 @@ aside .step a span:not(.hidden){
 }
 
 .barber-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
   
-.service-card,
-.date-time-option {
+.service-card{
   text-align: left;
   color: #2c3e50;
   padding: 5px 10px;
   margin-bottom: 5px;
-  background-color: #fff;
+  background-color: #f6f6f9;
   border: 1px solid #ddd;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
@@ -464,10 +471,9 @@ aside .step a span:not(.hidden){
 }
 
 .pricing{
-  color: #2fbe8f;
+  color: var(--color-success);
 }
-.service-card:hover,
-.date-time-option:hover {
+.service-card:hover{
   transform: scale(1.01);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -493,6 +499,77 @@ form {
     margin-top: 100px;
 }
 
+#date-next {
+  background-color: var(--color-success); /* Green background */
+  color: white; /* White text */
+  padding: 5px 10px; /* Padding */
+  margin: 5px;
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+#date-next:disabled {
+  background-color: #cccccc; /* Gray background when disabled */
+  cursor: not-allowed; /* Not-allowed cursor when disabled */
+}
+
+/* Custom Flatpickr Calendar Styles */
+.flatpickr-calendar {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'Arial', sans-serif;
+}
+
+.flatpickr-months .flatpickr-month {
+  background-color: #4CAF50; /* green header */
+  color: #001F3F;
+  border-radius: 10px 10px 0 0;  
+  padding: 10px;
+}
+
+.flatpickr-weekdays {
+  background-color: #f6f6f9;
+  padding: 8px 0;
+}
+
+.flatpickr-day {
+  border-radius: 50%;
+  margin: 2px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.flatpickr-day:hover {
+  background-color: #4CAF50; /* Green hover */
+  color: white;
+}
+
+.flatpickr-day.selected {
+  background-color: #4CAF50; /* Green selected */
+  color: white;
+  border: none;
+}
+
+.flatpickr-day.today {
+  border: 2px solid #4CAF50; /* Green border for today */
+}
+
+.flatpickr-day.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.flatpickr-time input {
+  font-weight: bold;
+}
+
+.flatpickr-time .flatpickr-am-pm {
+  background-color: #4CAF50; /* Green AM/PM button */
+  color: white;
+  border-radius: 5px;
+  padding: 2px 8px;
+}
+
 .back-button {
     padding: 5px 10px;
     margin: 5px;
@@ -503,14 +580,15 @@ form {
 }
 
 #information-next {
-    padding: 5px 10px;
-    margin: 5px;
-    border: none;
-    color: #111e88;
-    border: 2px solid #111e88;
-    cursor: pointer;
-    margin-right: 70%;
-    transition: 0.4s;
+  background-color: var(--color-success); /* White text */
+  color: var(--color-white);
+  padding: 5px 10px; /* Padding */
+  margin: 5px;
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-right: 70%;
+  transition: 0.4s;
 }
 
 #confirm-booking {
@@ -525,7 +603,8 @@ form {
 
 .back-button:hover,
 #information-next:hover,
-#confirm-booking:hover {
+#confirm-booking:hover,
+#date-next:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

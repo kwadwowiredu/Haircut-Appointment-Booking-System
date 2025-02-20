@@ -11,7 +11,7 @@ let selectedBarber = null;
 let selectedService = null;
 let selectedDateTime = null;
 
-// Function to update active indicators
+//Function to update active indicators 
 function updateActiveIndicators(activeStep) {
     // Hide all indicators first
     const indicators = [barberActive, serviceActive, dateActive, informationActive, confirmationActive];
@@ -219,7 +219,8 @@ const barberDetails = {
 // Initialize variables for selections
 let selectedService = null;
 let selectedBarber = null;
-let selectedDateTime = null;
+let selectedDate = null;
+let selectedTime = null;
 
 // Function to get qualified barbers for a service
 function getQualifiedBarbers(service) {
@@ -340,9 +341,13 @@ backButtons.forEach((button) => {
                 previousStepId = "select-barber";
                 activeStep = 1;
                 break;
+            case "select-barber":
+                previousStepId = "select-service";
+                activeStep = 1;
+                break;
             case "select-date":
                 previousStepId = "select-service";
-                activeStep = 2;
+                activeStep = 1;
                 break;
             case "input-information":
                 previousStepId = "select-date";
@@ -371,6 +376,9 @@ nextButton.addEventListener("click", () => {
         alert("Please fill in all the required fields.");
         return;
     }
+
+    // Combine selected date and time into a single string
+    const selectedDateTime = selectedDate && selectedTime ? `${selectedDate} at ${selectedTime}` : "None";
     
     const confirmationDetails = document.getElementById("confirmation-details");
     confirmationDetails.innerHTML = `
@@ -417,3 +425,143 @@ document.getElementById("confirm-booking").addEventListener("click", () => {
 document.addEventListener('DOMContentLoaded', () => {
     updateActiveIndicators(1);
 });
+
+
+
+
+/*==============NEW LINES OF CODES==============*/
+document.addEventListener('DOMContentLoaded', function() {
+    const datePicker = flatpickr("#date-picker", {
+        minDate: "today",
+        enableTime: false, // Disable time selection
+        
+        dateFormat: "Y-m-d", // date format
+        disable: [
+            function(date) {
+                // Disable specific days (e.g., Sundays)
+                return (date.getDay() === 0);
+            }
+        ],
+        onChange: function(selectedDates, dateStr, instance) {
+            //store the selected date
+            selectedDate = dateStr;
+
+            // Enable time slot selection
+            document.getElementById('time-slot').disabled = false;
+            
+            // Fetch available time slots for the selected date
+            fetchAvailableTimeSlots(dateStr);
+        }
+    });
+
+    const timeSlotSelect = document.getElementById('time-slot');
+    const nextButton = document.getElementById('date-next');
+
+    timeSlotSelect.addEventListener('change', function() {
+        // store the selected time
+        selectedTime = this.value;
+
+        // Enable the "Next" button if a valid time is selected
+        if (selectedDate && selectedTime) {
+            nextButton.disabled = false;
+        } else {
+            nextButton.disabled = true;
+        }
+
+        // Store the selected date and time in a variable or send it to the server
+        console.log(`Selected Date: ${selectedDate}, Selected Time: ${selectedTime}`);
+    });
+
+    nextButton.addEventListener('click', function() {
+        // Navigate to the next section (Information section)
+        goToNextStep('select-date', 'input-information', 4);
+        
+    });
+
+    function fetchAvailableTimeSlots(date) {
+        // Simulate fetching available time slots from the server
+        const availableTimeSlots = [
+            "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"
+        ];
+
+        const timeSlotSelect = document.getElementById('time-slot');
+        timeSlotSelect.innerHTML = '<option value="">Select Time</option>';
+
+        availableTimeSlots.forEach(slot => {
+            const option = document.createElement('option');
+            option.value = slot;
+            option.textContent = slot;
+            timeSlotSelect.appendChild(option);
+        });
+    }
+
+
+});
+
+function fetchAvailableTimeSlots(date) {
+    // Fetch available time slots from the server
+    fetch(`/api/available-slots?date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            const timeSlotSelect = document.getElementById('time-slot');
+            timeSlotSelect.innerHTML = '<option value="">Select Time</option>';
+
+            data.availableSlots.forEach(slot => {
+                const option = document.createElement('option');
+                option.value = slot;
+                option.textContent = slot;
+                timeSlotSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching available slots:', error));
+}
+
+const express = require('express');
+const app = express();
+const bookedSlots = {};
+
+app.get('/api/available-slots', (req, res) => {
+    const date = req.query.date;
+    const allSlots = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"];
+    const availableSlots = allSlots.filter(slot => !bookedSlots[date] || !bookedSlots[date].includes(slot));
+
+    res.json({ availableSlots });
+});
+
+app.post('/api/book-slot', (req, res) => {
+    const { date, time } = req.body;
+    if (!bookedSlots[date]) {
+        bookedSlots[date] = [];
+    }
+    bookedSlots[date].push(time);
+    res.json({ success: true });
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+
+document.getElementById('confirm-booking').addEventListener('click', function() {
+    const selectedDate = document.getElementById('date-picker').value;
+    const selectedTime = document.getElementById('time-slot').value;
+
+    fetch('/api/book-slot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ date: selectedDate, time: selectedTime }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Booking confirmed!');
+            // Proceed to the next step or show a confirmation message
+        } else {
+            alert('Booking failed. Please try again.');
+        }
+    })
+    .catch(error => console.error('Error confirming booking:', error));
+});
+
+
