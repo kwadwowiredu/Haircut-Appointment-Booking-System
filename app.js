@@ -382,13 +382,48 @@ nextButton.addEventListener("click", () => {
     
     const confirmationDetails = document.getElementById("confirmation-details");
     confirmationDetails.innerHTML = `
-        <p><strong>Selected Barber:</strong> ${selectedBarber || "None"}</p>
-        <p><strong>Selected Service:</strong> ${selectedService || "None"}</p>
-        <p><strong>Selected Date & Time:</strong> ${selectedDateTime || "None"}</p>
-        <p><strong>Your Name:</strong> ${nameInput.value || "None"}</p>
-        <p><strong>Your Email:</strong> ${emailInput.value || "None"}</p>
-        <p><strong>Your Phone:</strong> ${phoneInput.value || "None"}</p>
-    `;
+        <div class = "confirm-info">
+            <div class = "icon">
+                <span class="material-icons-sharp info-section">person</span>
+                <small><strong>Selected Barber</strong></small>
+                <p>${selectedBarber || "None"}</p>
+            </div>
+        </div>
+        <div class = "confirm-info">
+            <div class = "icon">
+                <span class="material-icons-sharp info-section">content_cut</span>
+                <small><strong>Selected Service</strong></small>
+                <p>${selectedService || "None"}</p>
+            </div>
+        </div>
+        <div class = "confirm-info">
+            <div class = "icon">
+                <span class="material-icons-sharp info-section">calendar_month</span>
+                <small><strong>Selected Date & Time</strong></small>
+                <p>${selectedDateTime || "None"}</p>
+            </div>
+        </div>
+        <div class = "confirm-info">
+            <div class = "icon">
+                <span class="material-icons-sharp info-section">person</span>
+                <small><strong>Your Name</strong></small>
+                <p>${nameInput.value || "None"}</p>
+            </div>
+        </div>
+        <div class = "confirm-info">
+            <div class = "icon">
+                <span class="material-icons-sharp info-section">email</span>
+                <small><strong>Your Email</strong></small>
+                <p>${emailInput.value || "None"}</p>
+            </div>
+        </div>
+        <div class = "confirm-info">
+            <div class = "icon">
+                <span class="material-icons-sharp info-section">phone</span>
+                <small><strong>Your Number</strong></small>
+                <p>${phoneInput.value || "None"}</p>
+            </div>
+        </div>`;
 
     goToNextStep("input-information", "confirmation", 5);
 });
